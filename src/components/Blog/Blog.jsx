@@ -3,6 +3,7 @@ import { CiBookmark } from "react-icons/ci";
 
 const Blog = ({ blog, handleAddToBookmarks, handleMarkAsRead }) => {
   const {
+    id,
     title,
     cover,
     author,
@@ -45,10 +46,7 @@ const Blog = ({ blog, handleAddToBookmarks, handleMarkAsRead }) => {
       <p className="my-3">
         {hashtags.map((hash, idx) => (
           <span key={idx}>
-            <a
-              href="#"
-              className="my-4 text-gray-600 hover:underline hover:text-blue-700"
-            >
+            <a className="my-4 text-gray-600 hover:underline hover:text-blue-700">
               #{hash}{" "}
             </a>
           </span>
@@ -56,7 +54,7 @@ const Blog = ({ blog, handleAddToBookmarks, handleMarkAsRead }) => {
       </p>
       <button
         onClick={() => {
-          handleMarkAsRead(blog.reading_time);
+          handleMarkAsRead(id, reading_time);
         }}
         className="text-purple-800 underline hover:text-black mb-5"
       >
