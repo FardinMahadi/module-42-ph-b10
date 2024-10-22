@@ -5,7 +5,7 @@ const Bookmarks = ({ bookmarks }) => {
   return (
     <div className="md:w-1/3">
       <div className="bg-gray-200 p-8 rounded-xl mx-5 md:ml-5">
-        <h2 className="text-3xl">Bookmarked Blogs: {bookmarks.length}</h2>
+        <h2 className="text-3xl font-bold">Marked Blogs: {bookmarks.length}</h2>
         {bookmarks.map((bookmark) => (
           <Bookmark key={bookmark.id} bookmark={bookmark} />
         ))}
