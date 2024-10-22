@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { CiBookmark } from "react-icons/ci";
 
-const Blog = ({ blog, handleAddToBookmarks }) => {
+const Blog = ({ blog, handleAddToBookmarks, handleMarkAsRead }) => {
   const {
     title,
     cover,
@@ -13,7 +13,7 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
   } = blog;
 
   return (
-    <div className="mb-14">
+    <div className="sm:mb-14">
       <img
         className="w-full rounded-xl mb-8"
         src={cover}
@@ -22,17 +22,17 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
       <div className="mb-4 flex justify-between items-center">
         <div className="flex items-center">
           <img
-            className="w-14"
+            className="w-8 sm:w-14"
             src={author_img}
             alt={`Author image of ${author}`}
           />
           <div className="ml-4">
-            <h3 className="font-bold">{author}</h3>
-            <p className="text-gray-600">{posted_date}</p>
+            <h3 className="text-sm sm:text-base font-bold">{author}</h3>
+            <p className="text-xs sm:text-base text-gray-600">{posted_date}</p>
           </div>
         </div>
         <div className="text-gray-600 flex items-center gap-1">
-          <span>{reading_time} min read</span>
+          <span className="text-sm sm:text-base">{reading_time} min read</span>
           <button
             onClick={() => handleAddToBookmarks(blog)}
             className="text-2xl"
@@ -41,7 +41,7 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
           </button>
         </div>
       </div>
-      <h2 className="text-4xl leading-10">{title}</h2>
+      <h2 className="text-xl sm:text-4xl sm:leading-10">{title}</h2>
       <p className="my-3">
         {hashtags.map((hash, idx) => (
           <span key={idx}>
@@ -54,6 +54,14 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
           </span>
         ))}
       </p>
+      <button
+        onClick={() => {
+          handleMarkAsRead(blog.reading_time);
+        }}
+        className="text-purple-800 underline hover:text-black mb-5"
+      >
+        Mark As Read
+      </button>
     </div>
   );
 };
@@ -61,6 +69,7 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
   handleAddToBookmarks: PropTypes.func,
+  handleMarkAsRead: PropTypes.func,
 };
 
 export default Blog;
